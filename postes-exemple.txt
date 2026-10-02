@@ -1,0 +1,16 @@
+# ===============================================================
+#  Liste des postes a deployer - un poste par ligne
+#  Remplacez/compl?tez ces lignes par vos postes reels.
+#
+#  Regles de lecture :
+#    - une ligne = un poste (nom court, FQDN ou adresse IP)
+#    - tout ce qui suit ; , une tabulation ou un espace est ignore
+#    - les lignes vides, les doublons et les lignes commencant
+#      par # ou ; sont ignores
+# ===============================================================
+
+PC-COMPTA-01
+PC-COMPTA-02      ; service comptabilite
+PC-ATELIER-03
+10.20.30.41
+10.20.30.42

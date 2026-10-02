@@ -1,0 +1,55 @@
+============================================================================
+ RemoteDeploy (version Python) 1.0.0
+ Console de deploiement de script sur postes distants,
+ avec RELANCE AUTOMATIQUE jusqu'a ce que TOUS les postes aient pris le script.
+============================================================================
+
+CE QUE FAIT LE LOGICIEL
+  1. Vous choisissez un SCRIPT (dans un dossier de votre choix).
+  2. Vous choisissez un fichier TXT contenant la LISTE DES POSTES (un par ligne).
+  3. L'application vous demande vos IDENTIFIANTS d'administration.
+  4. Le script est copie puis execute SUR CHAQUE POSTE distant.
+  5. Tous les postes qui n'ont pas pris le script sont RELANCES AUTOMATIQUEMENT,
+     vague apres vague, jusqu'a 100 % de reussite.
+  6. Suivi en direct, journaux par poste, export CSV et rapport HTML.
+
+MISE EN PLACE EN UNE FOIS (2 minutes)
+  a) Installez Python 3 (3.8 minimum) si ce n'est pas deja fait :
+       winget install Python.Python.3.12
+     ou https://www.python.org/downloads/windows/
+     (cochez "Add python.exe to PATH" et laissez l'option "tcl/tk" active)
+  b) Double-cliquez sur :  Installer-RemoteDeploy-Python.cmd
+     -> l'application est copiee, un raccourci est cree sur le Bureau,
+        et l'entree de desinstallation est enregistree.
+  c) Double-cliquez sur le raccourci "RemoteDeploy (Python)".
+
+REQUIS POUR DEPLOYER
+  - psexec.exe : deja present sur ce poste dans C:\_build\PStools\
+    (chemin modifiable dans l'onglet 2 « Options »)
+  - vos identifiants d'administration du parc (compte local ou compte de domaine)
+  - acces reseau : partage administratif (port 445) ou WinRM (port 5985), selon le moteur
+
+ANTIVIRUS / EDR
+  La livraison ne contient AUCUN binaire compile : uniquement des fichiers texte
+  (.py, .cmd, .md, .txt) executes par l'interpreteur Python officiel.
+  Il n'y a donc rien a exclure et rien a signaler (contrairement a un exe
+  fabrique avec PyInstaller - voir Mode-Emploi-Python.md, section 9).
+
+FICHIERS DE CETTE LIVRAISON
+  Installer-RemoteDeploy-Python.cmd      installation en une fois
+  Lancer-RemoteDeploy-Python.cmd         lancement (droits administrateur automatiques)
+  Desinstaller-RemoteDeploy-Python.cmd   desinstallation complete
+  RemoteDeploy.py                        l'application (fichier unique)
+  Mode-Emploi-Python.md                  mode d'emploi detaille (a lire)
+  postes-exemple.txt                     exemple de liste de postes
+  Exemple-Script.ps1                     exemple de script a deployer
+  Optionnel-Creer-EXE-PyInstaller.cmd    OPTIONNEL : fabriquer un .exe (risque antivirus)
+
+PREMIER TEST SANS RISQUE
+  Onglet 1 : choisissez Exemple-Script.ps1 et postes-exemple.txt
+  Onglet 2 : moteur = « Simulation (aucun contact reseau) »
+  Puis « Demarrer le deploiement » : vous verrez la boucle de relance a l'oeuvre,
+  sans contacter aucun poste.
+
+Verification technique de l'installation :
+  python RemoteDeploy.py --selftest        (20 controles internes)
